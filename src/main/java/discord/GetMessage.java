@@ -35,41 +35,42 @@ public class GetMessage extends ListenerAdapter {
     }
 
     private void command(String msg,String name,MessageChannel channel,MessageReceivedEvent event){
-        msg = msg.toLowerCase();
+        //msg = msg.toLowerCase();
+        String m[] = msg.split(" ");
+        m[0] = m[0].toLowerCase();
         //System.out.println(msg);
-        if(msg.equals("!ip")) {
+        if(m[0].equals("!ip")) {
             channel.sendMessage("IP: " + new GetIP().getIP()).queue();
-        }else if(msg.equalsIgnoreCase("hi")){
+        }else if(m[0].equalsIgnoreCase("hi")){
             channel.sendMessage("Hello "+name).queue();
-        }else if(msg.equals("!minecraft")) {
+        }else if(m[0].equals("!minecraft")) {
             channel.sendMessage("Minecraft Version 1.16.5").queue();
             channel.sendMessage("IP: " + new GetIP().getIP()).queue();
-        }else if(msg.equals("!ping")){
+        }else if(m[0].equals("!ping")){
             long time = System.currentTimeMillis();
             channel.sendMessage("Ping").queue(response /* => Message */ -> {
                 response.editMessageFormat("Ping: %d ms", System.currentTimeMillis() - time).queue();
             });
         }
-        else if(msg.equals("!playlist")){
+        else if(m[0].equals("!playlist")){
             Bot.music.playlist(event.getTextChannel());
-        }else if(msg.startsWith("!play") || msg.startsWith("!เปิดเพลง")
-                || msg.startsWith("!เปิด") || msg.startsWith("!p") || msg.startsWith("!ป")|| msg.startsWith("!เล่น")){
+        }else if(m[0].startsWith("!play") || m[0].startsWith("!เปิดเพลง")
+                || m[0].startsWith("!เปิด") || m[0].startsWith("!p") || m[0].startsWith("!ป")|| m[0].startsWith("!เล่น")){
             if (event.getAuthor().isBot()) return;
             //playMusic(msg,name,event.getTextChannel(),event);
             Bot.music.play(event,msg);
-        }else if(msg.equals("!skip") || msg.startsWith("!ข้าม")
-                || msg.equals("!s") ||msg.equals("!ข")  || msg.equals("!next") || msg.equals("!n")){
+        }else if(m[0].equals("!skip") || m[0].equals("!ข้าม")
+                || m[0].equals("!s") ||m[0].equals("!ข")  || m[0].equals("!next") || m[0].equals("!n")){
             Bot.music.skip(event);
-        }else if(msg.equals("!clear") || msg.equals("!c") || msg.equals("ลบ")){
+        }else if(m[0].equals("!clear") || m[0].equals("!c") || m[0].equals("ลบ")){
             Bot.music.clear(event.getTextChannel());
-        }else if(msg.equals("!invite")){
+        }else if(m[0].equals("!invite")){
             channel.sendMessage("Link: https://discord.com/api/oauth2/authorize?client_id=535740583361249300&permissions=8&scope=bot").queue();
-        }else if(msg.equals("!random")){
+        }else if(m[0].equals("!random")){
             Random random = new Random();
             channel.sendMessage(event.getAuthor().getName()+"'s Random no "+random.nextInt(12)).queue();
-        }else if(msg.startsWith("!randomsong") || msg.startsWith("!r")){
-            String s[] = msg.split(" ");
-            int n = Integer.valueOf(s[1]);
+        }else if(m[0].startsWith("!randomsong") || msg.startsWith("!r")){
+            int n = Integer.valueOf(m[1]);
             System.out.println(n);
             Bot.music.random(n,event);
         }else if(msg.equals("!delete")){
