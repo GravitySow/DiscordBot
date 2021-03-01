@@ -10,6 +10,7 @@ public class GuildMusicManager {
 
     public GuildMusicManager(AudioPlayerManager manager) {
         player = manager.createPlayer();
+        player.setVolume(10);                           //Default volume 100
         scheduler = new TrackScheduler(player);
         player.addListener(scheduler);
     }

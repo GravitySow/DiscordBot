@@ -42,7 +42,7 @@ public class Music {
         }else{
             url = m[1];
         }
-        System.out.println(url);
+        //System.out.println(url);
         loadAndPlay(event, url);
     }
 
@@ -68,7 +68,7 @@ public class Music {
     private void loadAndPlay(MessageReceivedEvent event, final String trackUrl) {
         final TextChannel channel = event.getTextChannel();
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
-        System.out.println(trackUrl);
+        //System.out.println(trackUrl);
         //System.out.println("\n"+trackUrl+"\n");
         playerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {
             @Override

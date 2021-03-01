@@ -29,6 +29,7 @@ public class Search {
     public String keywordSearch(String music){
         Properties properties = new Properties();
         String s = "";
+
         try {
             InputStream in = Search.class.getClassLoader().getResourceAsStream("\\"+PROPERTIES_FILENAME);
             //System.out.println(in);

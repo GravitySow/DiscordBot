@@ -16,13 +16,11 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.managers.AudioManager;
 
-import javax.swing.plaf.multi.MultiScrollBarUI;
-import java.util.Locale;
 import java.util.Random;
 
 public class GetMessage extends ListenerAdapter {
-    TrackScheduler trackScheduler;
     public void onMessageReceived(MessageReceivedEvent event){
+        //System.out.println("xxx");
         String name = event.getAuthor().getName();
         String msg = event.getMessage().getContentDisplay();
         MessageChannel channel = event.getChannel();
@@ -77,7 +75,6 @@ public class GetMessage extends ListenerAdapter {
             for(int i = 0;i < 5 ;i++){
                 channel.deleteMessageById(channel.getLatestMessageIdLong()).queue();
             }
-
         }
     }
 
