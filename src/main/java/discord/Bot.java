@@ -11,7 +11,7 @@ public class Bot implements EventListener {
     public static Music music;
     public static void main(String[] args) throws Exception {
         System.out.println("Start");
-        String token = "NTM1NzQwNTgzMzYxMjQ5MzAw.XEGRTA.-tqB7IVNgyM0P2TFhYAz3416TMc";
+        String token = "Token";
         JDA jda = JDABuilder.createDefault(token).addEventListeners(new GetMessage()).build();
         //jda.addEventListener(new GetMessage());
         jda.awaitReady();
