@@ -13,7 +13,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.util.*;
 
 public class Music {
@@ -28,7 +27,6 @@ public class Music {
 
     }
     public void play(MessageReceivedEvent event, String msg) {
-        //TextChannel channel = event.getTextChannel();
         String m[] = msg.split(" ");
         String url;
         if(m.length != 2) return;
@@ -38,11 +36,9 @@ public class Music {
                 x += m[i]+" ";
             }
             url = new Search().keywordSearch(x);
-            //m[1] = url;
         }else{
             url = m[1];
         }
-        //System.out.println(url);
         loadAndPlay(event, url);
     }
 
@@ -68,8 +64,6 @@ public class Music {
     private void loadAndPlay(MessageReceivedEvent event, final String trackUrl) {
         final TextChannel channel = event.getTextChannel();
         GuildMusicManager musicManager = getGuildAudioPlayer(channel.getGuild());
-        //System.out.println(trackUrl);
-        //System.out.println("\n"+trackUrl+"\n");
         playerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
@@ -88,7 +82,6 @@ public class Music {
 
                 channel.sendMessage("Adding to queue " + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
 
-                //play(channel, musicManager, firstTrack);
                 int count = 0;
                 for (AudioTrack track : playlist.getTracks()) {
                     play(event, musicManager,track);

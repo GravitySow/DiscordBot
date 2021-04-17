@@ -6,7 +6,6 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import net.dv8tion.jda.api.entities.TextChannel;
 
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -40,7 +39,6 @@ public class TrackScheduler extends AudioEventAdapter {
     }
 
     public void nextTrack() {
-        //System.out.println(queue.peek().getInfo());
         if(queue.peek() != null){
             channels.poll().sendMessage("Playing: "+queue.peek().getInfo().title).queue();
         }
@@ -71,11 +69,6 @@ public class TrackScheduler extends AudioEventAdapter {
             channel.sendMessage("Total songs in playlist: "+count).queue();
         })
         .run();
-        /*int count = 0;
-        for(AudioTrack i:queue){
-            channel.sendMessage(++count+": "+i.getInfo().title).queue();
-        }
-        channel.sendMessage("Total songs in playlist: "+count).queue();*/
     }
 
 }
